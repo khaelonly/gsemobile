@@ -55,7 +55,7 @@ class register_page_4 extends StatelessWidget {
                 ),
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,  // Align to the start
+                crossAxisAlignment: CrossAxisAlignment.start, 
                 children: [
                   SizedBox(height: 50),
                   Text(

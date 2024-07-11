@@ -17,14 +17,9 @@ class order_confirmation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: Color(0xFF28254C)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
+                  
                   Image.asset(
                     'assets/MetaIcon.png',
                     height: 40.0,
@@ -44,7 +39,7 @@ class order_confirmation extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF2E7D32), // Adjusted for green color
+                  color: Color(0xFF2E7D32), 
                 ),
               ),
               SizedBox(height: 8.0),
@@ -61,10 +56,10 @@ class order_confirmation extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF28254C),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
                   padding: EdgeInsets.symmetric(vertical: 16.0),
-                  minimumSize: Size(200, 48), // Adjust the width and height as needed
+                  minimumSize: Size(200, 48), 
                 ),
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(

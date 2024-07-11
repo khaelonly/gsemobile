@@ -24,7 +24,7 @@ class _ShopScreenState extends State<shop> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -65,7 +65,7 @@ class _ShopScreenState extends State<shop> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.only(top: 15, left: 15),
               child: Text(
                 'OUR PRODUCTS',
                 style: TextStyle(
@@ -79,19 +79,22 @@ class _ShopScreenState extends State<shop> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 80,
-                    child: ListView(
-                      children: [
-                        _buildCategoryItem('Metal Products', 'metal.png'),
-                        _buildCategoryItem('Motors & Reducers', 'motor.png'),
-                        _buildCategoryItem('Oil & Air Filters', 'oilandfilter.png'),
-                        _buildCategoryItem('Industrial Hoses', 'industrialhoses.png'),
-                        _buildCategoryItem('O-Rings', 'oring.png'),
-                        _buildCategoryItem('Hydraulic Parts', 'hydraulicparts.png'),
-                        _buildCategoryItem('Filing Cabinets', 'filingcabinet.png'),
-                        _buildCategoryItem('Lockers', 'locker.png'),
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Container(
+                      width: 80,
+                      child: ListView(
+                        children: [
+                          _buildCategoryItem('Metal Products', 'metal.png'),
+                          _buildCategoryItem('Motors & Reducers', 'motor.png'),
+                          _buildCategoryItem('Oil & Air Filters', 'oilandfilter.png'),
+                          _buildCategoryItem('Industrial Hoses', 'industrialhoses.png'),
+                          _buildCategoryItem('O-Rings', 'oring.png'),
+                          _buildCategoryItem('Hydraulic Parts', 'hydraulicparts.png'),
+                          _buildCategoryItem('Filing Cabinets', 'filingcabinet.png'),
+                          _buildCategoryItem('Lockers', 'locker.png'),
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
@@ -102,7 +105,7 @@ class _ShopScreenState extends State<shop> {
                   ),
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -121,6 +124,7 @@ class _ShopScreenState extends State<shop> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Container(
+          height: 80.0,
           decoration: BoxDecoration(
             color: _selectedCategory == title ? Color(0xFF28254C) : Colors.grey[200],
             borderRadius: BorderRadius.circular(15.0),
@@ -129,6 +133,7 @@ class _ShopScreenState extends State<shop> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
                     imageAssetPath,
@@ -150,6 +155,7 @@ class _ShopScreenState extends State<shop> {
           ),
         ),
       ),
+
     );
   }
 
@@ -267,14 +273,14 @@ class _ShopScreenState extends State<shop> {
           SizedBox(height: 10),
           ElevatedButton(
         onPressed: () {
-          // Create a CartItem and add to cart
+          // CTA
           CartItem item = CartItem(productName, 'assets/itemholder.png', int.parse(price.replaceAll('Php ', '')), 1);
           shop_model.addItem(item);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xFF28254C),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(50.0),
             ),
             minimumSize: Size(10, 30)
           ),

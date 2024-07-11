@@ -20,45 +20,46 @@ class _profileState extends State<profile> {
   TextEditingController postalCodeController = TextEditingController(text: "123456");
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80.0),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20, top: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: Color(0xFF28254C)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+ Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: PreferredSize(
+      preferredSize: Size.fromHeight(80.0),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 20, top: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.arrow_back, color: Color(0xFF28254C)),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                Text(
+                  'Profile',
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF28254C),
                   ),
-                  Text(
-                    'Profile',
-                    style: TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF28254C),
-                    ),
-                  ),
-                  Image.asset(
-                    'assets/MetaIcon.png',
-                    height: 40.0,
-                  ),
-                ],
-              ),
-            ],
-          ),
+                ),
+                Image.asset(
+                  'assets/MetaIcon.png',
+                  height: 40.0,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+    ),
+    body: Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(height: 20),
@@ -68,25 +69,31 @@ class _profileState extends State<profile> {
               ),
               SizedBox(height: 20),
               buildEditableTextField('Name', nameController, isEditing),
+              Divider(),
               buildEditableTextField('Email', emailController, isEditing),
+              Divider(),
               buildEditableTextField('Password', passwordController, isEditing),
+              Divider(),
               buildEditableTextField('Contact Number', contactNumberController, isEditing),
+              Divider(),
               buildEditableTextField('City/Province', cityController, isEditing),
+              Divider(),
               buildEditableTextField('Postal Code', postalCodeController, isEditing),
             ],
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(isEditing ? Icons.check : Icons.edit),
-        onPressed: () {
-          setState(() {
-            isEditing = !isEditing;
-          });
-        },
-      ),
-    );
-  }
+    ),
+    floatingActionButton: FloatingActionButton(
+      child: Icon(isEditing ? Icons.check : Icons.edit),
+      onPressed: () {
+        setState(() {
+          isEditing = !isEditing;
+        });
+      },
+    ),
+  );
+}
 
   Widget buildEditableTextField(String label, TextEditingController controller, bool isEditing) {
     return Padding(

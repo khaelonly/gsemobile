@@ -1,12 +1,19 @@
 // Path: lib/screens/checkout.dart
 
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types, prefer_const_literals_to_create_immutables, must_be_immutable, depend_on_referenced_packages, sized_box_for_whitespace, library_private_types_in_public_api, prefer_const_constructors_in_immutables, file_names
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types, prefer_const_literals_to_create_immutables, must_be_immutable, depend_on_referenced_packages, sized_box_for_whitespace, library_private_types_in_public_api, prefer_const_constructors_in_immutables, file_names, prefer_final_fields, unused_field
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/shop_model.dart';
 
-class checkout extends StatelessWidget {
+class checkout extends StatefulWidget {
+  @override
+  _CheckoutPageState createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends State<checkout> {
+  String _selectedPaymentMethod = 'Cash On Delivery';
+
   @override
   Widget build(BuildContext context) {
     var cart = Provider.of<CartModel>(context);
@@ -46,11 +53,11 @@ class checkout extends StatelessWidget {
               SizedBox(height: 16.0),
               Table(
                 columnWidths: {
-                  0: FixedColumnWidth(150.0),
-                  1: FixedColumnWidth(70.0),
+                  0: FixedColumnWidth(230.0),
+                  1: FixedColumnWidth(80.0),
                   2: FixedColumnWidth(50.0),
                 },
-                border: TableBorder.all(color: Colors.grey),
+                border: TableBorder.all(color: Colors.white),
                 children: [
                   TableRow(
                     children: [
@@ -117,7 +124,7 @@ class checkout extends StatelessWidget {
               Text(
                 'Personal Information',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF28254C),
                 ),
@@ -132,7 +139,7 @@ class checkout extends StatelessWidget {
               Text(
                 'Shipping Information',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF28254C),
                 ),
@@ -143,11 +150,13 @@ class checkout extends StatelessWidget {
               _buildTextField('Province'),
               _buildTextField('Zip Code'),
               _buildTextField('Order Notes', maxLines: 3),
-              SizedBox(height: 16.0),
+              SizedBox(height: 25.0),
+              Divider(),
+              SizedBox(height: 25.0),
               Text(
                 'PAYMENT',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF28254C),
                 ),
@@ -162,27 +171,39 @@ class checkout extends StatelessWidget {
               RadioListTile(
                 title: Text('Cash On Delivery'),
                 value: 'Cash On Delivery',
-                groupValue: 'payment',
-                onChanged: (value) {},
+                groupValue: _selectedPaymentMethod,
+                onChanged: (value) {
+                  setState(() {
+                    _selectedPaymentMethod = value!;
+                  });
+                },
               ),
               RadioListTile(
                 title: Text('Direct Bank Transfer'),
                 value: 'Direct Bank Transfer',
-                groupValue: 'payment',
-                onChanged: (value) {},
+                groupValue: _selectedPaymentMethod,
+                onChanged: (value) {
+                  setState(() {
+                    _selectedPaymentMethod = value!;
+                  });
+                },
               ),
               RadioListTile(
                 title: Text('GCash'),
                 value: 'GCash',
-                groupValue: 'payment',
-                onChanged: (value) {},
+                groupValue: _selectedPaymentMethod,
+                onChanged: (value) {
+                  setState(() {
+                    _selectedPaymentMethod = value!;
+                  });
+                },
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF28254C),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   minimumSize: Size(double.infinity, 48),
@@ -213,7 +234,7 @@ class checkout extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(10.0),
           ),
         ),
       ),

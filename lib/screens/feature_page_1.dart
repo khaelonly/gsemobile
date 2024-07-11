@@ -1,12 +1,12 @@
 // Path: lib/screens/feature_page_1.dart
 
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 
 class feature_page_1 extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -83,14 +83,20 @@ class feature_page_1 extends StatelessWidget {
                             }),
                           ),
                           SizedBox(height: 30),
-                          FloatingActionButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/feature_page_2');
-                            },
-                            backgroundColor: Color(0xFF28254C),
-                            child: Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 16.0),
+                              child: FloatingActionButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/feature_page_2');
+                                },
+                                backgroundColor: Color(0xFF28254C),
+                                child: Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ),
                         ],

@@ -14,30 +14,33 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    var cart = Provider.of<CartModel>(context); // Assuming you have a CartModel provider
+    var cart = Provider.of<CartModel>(context);
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: Color(0xFF28254C)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  Image.asset(
-                    'assets/MetaIcon.png',
-                    height: 40.0,
-                  ),
-                ],
+              Padding(
+                padding: EdgeInsets.zero,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back, color: Color(0xFF28254C)),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    Image.asset(
+                      'assets/MetaIcon.png',
+                      height: 40.0,
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 16.0),
               Text(
@@ -88,7 +91,7 @@ class _CartScreenState extends State<CartScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF28254C),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   minimumSize: Size(500, 30),
@@ -122,7 +125,7 @@ class CartItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

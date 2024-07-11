@@ -83,16 +83,27 @@ class feature_page_3 extends StatelessWidget {
                             }),
                           ),
                           SizedBox(height: 30),
-                          FloatingActionButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/feature_page_4');
-                            },
-                            backgroundColor: Color(0xFF28254C),
-                            child: Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
+                          Align(
+                          alignment: Alignment.centerRight,
+                          child: 
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: Container(
+                              width: 56,
+                              height: 56,
+                              child: FloatingActionButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/feature_page_4');
+                                },
+                                backgroundColor: Color(0xFF28254C),
+                                child: Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ),
+                        ),
                         ],
                       ),
                     ),
