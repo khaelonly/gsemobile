@@ -1,10 +1,12 @@
 // Path: lib/screens/feature_page_2.dart
 
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 
 class feature_page_2 extends StatelessWidget {
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

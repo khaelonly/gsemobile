@@ -5,7 +5,8 @@
 import 'package:flutter/material.dart';
 
 class feature_page_1 extends StatelessWidget {
-  @override
+
+@override
  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,

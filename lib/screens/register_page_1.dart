@@ -5,6 +5,11 @@
 import 'package:flutter/material.dart';
 
 class register_page_1 extends StatelessWidget {
+
+TextEditingController firstname = TextEditingController();
+TextEditingController lastname = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +64,7 @@ class register_page_1 extends StatelessWidget {
                 children: [
                   SizedBox(height: 50),
                   Text(
+                    
                     'First Name',
                     style: TextStyle(
                       fontSize: 18,

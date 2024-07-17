@@ -238,9 +238,13 @@ class _ShopScreenState extends State<shop> {
   }
 
   Widget _buildProductCard(BuildContext context, String productName, String price) {
-    CartModel shop_model = Provider.of<CartModel>(context, listen: false);
+  CartModel shop_model = Provider.of<CartModel>(context, listen: false);
 
-    return Container(
+  return GestureDetector(
+    onTap: () {
+      _showProductDetails(context, productName, price);
+    },
+    child: Container(
       width: (MediaQuery.of(context).size.width - 120) / 2,
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
@@ -272,25 +276,260 @@ class _ShopScreenState extends State<shop> {
           ),
           SizedBox(height: 10),
           ElevatedButton(
-        onPressed: () {
-          // CTA
-          CartItem item = CartItem(productName, 'assets/itemholder.png', int.parse(price.replaceAll('Php ', '')), 1);
-          shop_model.addItem(item);
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF28254C),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50.0),
+            onPressed: () {
+              CartItem item = CartItem(productName, 'assets/itemholder.png', int.parse(price.replaceAll('Php ', '')), 1);
+              shop_model.addItem(item);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFF28254C),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              minimumSize: Size(10, 30)
             ),
-            minimumSize: Size(10, 30)
+            child: Text(
+              'ADD TO CART',
+              style: TextStyle(color: Colors.white, fontSize: 9),
+            ),
           ),
-          child: Text(
-            'ADD TO CART',
-            style: TextStyle(color: Colors.white, fontSize: 9,),
-          ),
-        ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
+
+
+void _showProductDetails(BuildContext context, String productName, String price) {
+  int quantity = 1;  // Default quantity
+
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    builder: (BuildContext context) {
+      String selectedStyle = 'Casual';
+      String selectedColor = 'Blue';
+
+      return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    child: Image.asset(
+                      'assets/profile.jpg',
+                      fit:BoxFit.contain,
+                      height: 200.0, // Adjust height as needed
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    productName,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF28254C),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    price,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF28254C),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    style: TextStyle(fontSize: 14),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Style:',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: selectedStyle,
+                      items: <String>['Casual', 'Formal', 'Sporty']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedStyle = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Color:',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: selectedColor,
+                      items: <String>['Blue', 'Red', 'Green']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedColor = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF28254C),
+                              shape: BoxShape.circle,
+                            ),
+                            child: IconButton(
+                              onPressed: () {
+                                if (quantity > 1) {
+                                  setState(() {
+                                    quantity--;
+                                  });
+                                }
+                              },
+                              icon: Icon(Icons.remove, color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            width: 60,
+                            height: 40,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xFF28254C)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: TextField(
+                              controller: TextEditingController(
+                                text: quantity.toString(),
+                              ),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
+                              onChanged: (value) {
+                                setState(() {
+                                  quantity = int.tryParse(value) ?? 1;
+                                });
+                              },
+                            ),
+                          ),
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF28254C),
+                              shape: BoxShape.circle,
+                            ),
+                            child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  quantity++;
+                                });
+                              },
+                              icon: Icon(Icons.add, color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Available',
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 14,
+                            ),
+                          ),
+                          Text(
+                            'Stock: 1000',
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                        ),
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(color: Color(0xFF28254C)),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // CTA: Add to Cart logic
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF28254C),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        child: Text(
+                          'ADD TO CART',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    },
+  );
+}
+
 }

@@ -1,10 +1,23 @@
 // Path: lib/screens/register_page_4.dart
 
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class register_page_4 extends StatelessWidget {
+
+  TextEditingController password = TextEditingController();
+
+  Future<void> insertrecord() async 
+  {
+    if(password.text!= "" ){
+
+    }else{
+      print("password is empty");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,6 +145,7 @@ class register_page_4 extends StatelessWidget {
                       width: 350,
                       child: ElevatedButton(
                         onPressed: () {
+                          insertrecord();
                           Navigator.pushNamed(context, '/login_page');
                         },
                         style: ElevatedButton.styleFrom(
